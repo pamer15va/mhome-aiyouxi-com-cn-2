@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pamer15va.github.io/mhome-aiyouxi-com-cn-2/sitemap.xml

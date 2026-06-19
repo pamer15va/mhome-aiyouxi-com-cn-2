@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>爱游戏 · 简明指南</title>
+  <style>
+    /* 重置与全局 */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+      background: #f4fafc;
+      color: #1b2c3a;
+      line-height: 1.6;
+      padding: 1.2rem 1rem 2.8rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .page {
+      max-width: 780px;
+      width: 100%;
+    }
+
+    /* 蓝绿色点缀基调 */
+    :root {
+      --teal-50: #e0f0f2;
+      --teal-200: #80cbc4;
+      --teal-500: #26a69a;
+      --teal-700: #00796b;
+      --teal-900: #004d40;
+      --card-bg: #ffffff;
+      --card-shadow: 0 4px 12px rgba(0, 77, 64, 0.06);
+      --radius-card: 20px;
+      --radius-sm: 12px;
+    }
+
+    /* 开场短句 */
+    .opening {
+      margin: 0.8rem 0 2rem;
+      padding: 1.6rem 1.2rem 2.2rem;
+      background: linear-gradient(145deg, #ffffff, #f0f9fa);
+      border-radius: var(--radius-card);
+      box-shadow: var(--card-shadow);
+      border-left: 4px solid var(--teal-500);
+    }
+    .opening .tagline {
+      font-size: 0.85rem;
+      letter-spacing: 0.03em;
+      color: var(--teal-700);
+      background: var(--teal-50);
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+    .opening h1 {
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+      color: #002b36;
+    }
+    .opening h1 em {
+      font-style: normal;
+      color: var(--teal-700);
+    }
+    .opening p {
+      font-size: 1.05rem;
+      color: #2c4a55;
+      margin-top: 0.75rem;
+      max-width: 90%;
+    }
+
+    /* 承接段落 —— 温和叙述 */
+    .bridge {
+      background: var(--card-bg);
+      padding: 1.8rem 1.4rem;
+      border-radius: var(--radius-card);
+      box-shadow: var(--card-shadow);
+      margin: 1.5rem 0;
+      position: relative;
+    }
+    .bridge::after {
+      content: "⁝";
+      position: absolute;
+      bottom: -0.9rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.6rem;
+      color: var(--teal-200);
+      letter-spacing: 6px;
+      background: #f4fafc;
+      padding: 0 0.6rem;
+    }
+    .bridge p {
+      font-size: 1.02rem;
+      margin-bottom: 1rem;
+    }
+    .bridge p:last-child {
+      margin-bottom: 0;
+    }
+    .bridge a {
+      color: var(--teal-700);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted var(--teal-500);
+      transition: border-bottom 0.2s, color 0.2s;
+    }
+    .bridge a:hover {
+      border-bottom: 2px solid var(--teal-700);
+      color: #004d40;
+    }
+
+    /* 特点列表 —— 网格卡片 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 2rem 0 1.8rem;
+    }
+    @media (max-width: 500px) {
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-sm);
+      padding: 1.3rem 1rem 1.2rem;
+      box-shadow: var(--card-shadow);
+      border: 1px solid #e5f0f0;
+      transition: transform 0.15s ease, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0, 77, 64, 0.07);
+      border-color: var(--teal-200);
+    }
+    .feature-card .icon-badge {
+      display: inline-block;
+      width: 2rem;
+      height: 2rem;
+      background: var(--teal-50);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      color: var(--teal-700);
+    }
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #00363a;
+      margin-bottom: 0.25rem;
+    }
+    .feature-card p {
+      font-size: 0.95rem;
+      color: #3b5b65;
+      line-height: 1.5;
+    }
+
+    /* 场景 & 提示 (二合一紧凑块) */
+    .scenario-tip {
+      background: #eef7f6;
+      border-radius: var(--radius-card);
+      padding: 1.8rem 1.4rem;
+      margin: 1.8rem 0;
+      border: 1px solid #c9e2df;
+    }
+    .scenario-tip h2 {
+      font-size: 1.3rem;
+      font-weight: 450;
+      color: var(--teal-900);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .scenario-tip h2 span {
+      background: white;
+      border-radius: 40px;
+      padding: 0.1rem 0.7rem;
+      font-size: 0.8rem;
+      color: var(--teal-700);
+      border: 1px solid var(--teal-200);
+    }
+    .scenario-item {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 0.9rem;
+    }
+    .scenario-item:last-child {
+      margin-bottom: 0;
+    }
+    .scenario-item .num {
+      flex-shrink: 0;
+      background: white;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--teal-700);
+      border: 1px solid var(--teal-200);
+    }
+    .scenario-item .text {
+      font-size: 0.98rem;
+      color: #1f3d44;
+    }
+    .scenario-item .text strong {
+      font-weight: 500;
+      color: #004d40;
+    }
+
+    /* FAQ 摘要 —— 紧凑风格 */
+    .faq-mini {
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      padding: 1.4rem 1.4rem 0.8rem;
+      box-shadow: var(--card-shadow);
+      margin: 1.5rem 0 2rem;
+    }
+    .faq-mini h3 {
+      font-size: 1.1rem;
+      font-weight: 450;
+      color: var(--teal-900);
+      margin-bottom: 1rem;
+      border-left: 3px solid var(--teal-500);
+      padding-left: 0.75rem;
+    }
+    .faq-item {
+      padding: 0.5rem 0 0.7rem;
+      border-bottom: 1px solid #ebf3f2;
+    }
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    .faq-q {
+      font-weight: 500;
+      color: #00363a;
+      font-size: 0.98rem;
+      margin-bottom: 0.15rem;
+    }
+    .faq-a {
+      font-size: 0.92rem;
+      color: #3a5c63;
+      padding-left: 0.3rem;
+    }
+
+    /* 温和结尾 */
+    .gentle-end {
+      text-align: center;
+      padding: 1.2rem 0.5rem 0.2rem;
+      color: #446b72;
+      border-top: 1px dashed #bcd9d6;
+      margin-top: 1.2rem;
+    }
+    .gentle-end p {
+      font-size: 0.95rem;
+      max-width: 480px;
+      margin: 0 auto 0.7rem;
+    }
+    .gentle-end .meta-note {
+      font-size: 0.8rem;
+      color: #7a9b9f;
+    }
+
+    /* 其他辅助 */
+    hr {
+      border: none;
+      border-top: 1px solid #d7eae7;
+      margin: 1.2rem 0;
+    }
+    .inline-link {
+      color: var(--teal-700);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--teal-500);
+      font-weight: 450;
+    }
+    .inline-link:hover {
+      border-bottom: 2px solid #00796b;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 开场短句 hero -->
+  <div class="opening">
+    <div class="tagline">简明指南 · 叙事</div>
+    <h1>一种轻盈方式<br>遇见<em>爱游戏</em></h1>
+    <p>不需要繁复的说明，也不需要眼花缭乱的入口。你只需要知道：有些体验，值得用最简单的方式靠近。</p>
+  </div>
+
+  <!-- 承接段落 —— 从访问提醒切入 -->
+  <div class="bridge">
+    <p>如果你恰好对游戏内容、社区氛围或轻度探索感兴趣，那么不妨将 <a href="https://mhome-aiyouxi.com.cn">爱游戏</a> 看作一个安静的起点。没有弹窗的催促，也没有夸大的承诺——页面本身就像一张干净的便签，提示你“这里有些东西，你可以慢慢看”。</p>
+    <p>很多人第一次打开时，会下意识寻找显眼的按钮或动态 banner，但这里更倾向于把选择权留给你。无论你是想了解某个玩法、浏览近期更新，还是单纯想找个不嘈杂的地方待一会儿，都值得去转转。</p>
+  </div>
+
+  <!-- 特点列表 —— 网格卡片 -->
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="icon-badge">☕</div>
+      <h3>轻触即达</h3>
+      <p>页面结构克制，没有冗余模块。从概览到具体内容，通常两三次点击就能找到想看的。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon-badge">📋</div>
+      <h3>信息可扫读</h3>
+      <p>段落短小，重点用自然语气标出。即便快速浏览，也不会遗漏核心脉络。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon-badge">🔍</div>
+      <h3>引导而非说教</h3>
+      <p>用简短描述代替长篇教程，适合那些不想读说明书、只想直接上手的访客。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon-badge">🌱</div>
+      <h3>保持呼吸感</h3>
+      <p>版面留白舒适，配色不过度刺激。蓝绿色点缀只为区分层次，不抢夺注意力。</p>
+    </div>
+  </div>
+
+  <!-- 场景与提示 —— 混合内容 -->
+  <div class="scenario-tip">
+    <h2>常见场景 <span>提醒向</span></h2>
+    <div class="scenario-item">
+      <div class="num">1</div>
+      <div class="text"><strong>初访者</strong> —— 可以先逛逛概览区域，留意那些用柔和色块标注的条目，它们通常是内容聚类。</div>
+    </div>
+    <div class="scenario-item">
+      <div class="num">2</div>
+      <div class="text"><strong>回访者</strong> —— 页面顶部附近一般会有最近更新的痕迹（比如日期或简短的“新”标记），方便快速定位变化。</div>
+    </div>
+    <div class="scenario-item">
+      <div class="num">3</div>
+      <div class="text"><strong>移动端用户</strong> —— 卡片和按钮都适配了触摸操作，左右滑动或上下滚动都很顺，不必担心误触。</div>
+    </div>
+    <div class="scenario-item">
+      <div class="num">4</div>
+      <div class="text"><strong>只想随便看看</strong> —— 那就真的随便看看。没有强制注册、没有浮层提醒，浏览完随时可以离开。</div>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <h3>几个简短 FAQ</h3>
+    <div class="faq-item">
+      <div class="faq-q">这个网站需要登录吗？</div>
+      <div class="faq-a">大部分内容可以直接浏览，不需要账户。部分互动功能（如果有）可能才需要简单注册，页面会有明确提示。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">内容更新频繁吗？</div>
+      <div class="faq-a">视具体板块而定，通常每周会有少量增补或调整。你可以把 <a href="https://mhome-aiyouxi.com.cn" class="inline-link">爱游戏</a> 收藏起来，隔段时间回来看一眼。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">有没有下载或安装的要求？</div>
+      <div class="faq-a">纯网页体验，无需下载任何客户端。保持浏览器在较新版本即可获得最佳显示效果。</div>
+    </div>
+  </div>
+
+  <!-- 温和结尾 -->
+  <div class="gentle-end">
+    <p>写到最后，其实没有太多要强调的。如果你恰好路过，不妨把 <a href="https://mhome-aiyouxi.com.cn">爱游戏</a> 当作一本可以随手翻开的小册子——不厚，但每页都放着一点用心。</p>
+    <p class="meta-note">希望这里能成为你偶尔停下来的理由。</p>
+  </div>
+
+  <!-- 极简分隔与版本提示（不抢眼） -->
+  <hr>
+  <div style="font-size:0.75rem; color:#94b3b3; text-align:center; margin-top:0.3rem;">
+    页面风格 · 蓝绿叙事卡片 · 移动优先
+  </div>
+</div>
+</body>
+</html>
