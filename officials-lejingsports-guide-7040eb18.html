@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乐竞体育 · 站点介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f7f3ed;
+            font-family: 'Georgia', 'Times New Roman', '宋体', serif;
+            color: #2c2b28;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+        }
+
+        .page-wrap {
+            max-width: 840px;
+            margin: 0 auto;
+            background: #fffcf8;
+            padding: 2.5rem 2rem;
+            border-radius: 28px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        /* hero 区 */
+        .hero {
+            text-align: center;
+            padding: 2.2rem 1rem 2.8rem;
+            border-bottom: 1px solid #e6ddd0;
+            margin-bottom: 2.4rem;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #3a352c;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .subhead {
+            font-size: 1.1rem;
+            color: #7a7167;
+            font-style: italic;
+            max-width: 560px;
+            margin: 0.6rem auto 0;
+            border-left: 3px solid #dacfc2;
+            padding-left: 1.2rem;
+            text-align: left;
+        }
+
+        /* 通用卡片 / 引用块 */
+        .inset-box {
+            background: #f4eee7;
+            padding: 1.8rem 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border-left: 8px solid #b5a48f;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+        }
+
+        .inset-box p {
+            margin-bottom: 0.8rem;
+        }
+
+        .inset-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-label {
+            display: inline-block;
+            background: #dacfc2;
+            color: #2c2b28;
+            padding: 0.15rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-right: 0.4rem;
+        }
+
+        /* 优势网格 */
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .advantage-item {
+            background: #faf6f1;
+            padding: 1.5rem 1.2rem;
+            border-radius: 16px;
+            border: 1px solid #eaddd0;
+            transition: all 0.2s ease;
+        }
+
+        .advantage-item:hover {
+            background: #f5eee6;
+            border-color: #cbb9a6;
+        }
+
+        .advantage-item h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            color: #4e463a;
+        }
+
+        .advantage-item p {
+            font-size: 0.95rem;
+            color: #5f564c;
+        }
+
+        /* 说明区 - 文章段落 */
+        .explain-section {
+            margin: 2.2rem 0;
+        }
+
+        .explain-section h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            border-bottom: 1px dashed #d6cbbc;
+            padding-bottom: 0.3rem;
+            margin-bottom: 1.2rem;
+            color: #4a4238;
+        }
+
+        .explain-section p {
+            margin-bottom: 1.2rem;
+        }
+
+        /* FAQ 摘要 */
+        .faq-summary {
+            margin: 2.5rem 0 1.8rem;
+            background: #f9f4ed;
+            padding: 1.8rem 2rem;
+            border-radius: 24px;
+        }
+
+        .faq-summary h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #4a4238;
+            margin-bottom: 1.2rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 500;
+            color: #3a352c;
+            margin-bottom: 0.2rem;
+            font-size: 1rem;
+        }
+
+        .faq-item p {
+            margin-left: 0.2rem;
+            color: #5f564c;
+        }
+
+        .faq-more {
+            margin-top: 1rem;
+            font-style: italic;
+            color: #7a7167;
+            text-align: right;
+            font-size: 0.9rem;
+        }
+
+        /* 底部链接 */
+        .footer-links {
+            margin-top: 2.8rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid #e6ddd0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.8rem 1.5rem;
+        }
+
+        .footer-links p {
+            font-size: 0.9rem;
+            color: #7a7167;
+        }
+
+        .footer-links a {
+            color: #5a4e40;
+            text-decoration: underline wavy #d6cbbc 1px;
+            text-underline-offset: 4px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #2c2b28;
+            text-decoration-color: #9b8977;
+        }
+
+        .btn-soft {
+            display: inline-block;
+            background: #e4d9cc;
+            padding: 0.5rem 1.8rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            color: #2c2b28;
+            text-decoration: none;
+            border: 1px solid #cfc0ae;
+            transition: background 0.2s, border 0.2s;
+        }
+
+        .btn-soft:hover {
+            background: #d6c6b4;
+            border-color: #b5a48f;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .page-wrap {
+                padding: 1.8rem 1.2rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .advantage-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .inset-box {
+                padding: 1.3rem 1.2rem;
+            }
+            .faq-summary {
+                padding: 1.3rem 1.2rem;
+            }
+            .footer-links {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrap">
+        <!-- hero 区 -->
+        <div class="hero">
+            <h1>乐竞体育</h1>
+            <div class="subhead">
+                一个关于信息透明、站点定位与日常可信度的介绍页。
+                我们试着把「这是一个什么站」讲清楚。
+            </div>
+        </div>
+
+        <!-- 优势区 -->
+        <div class="advantage-grid">
+            <div class="advantage-item">
+                <h3>📋 结构清晰</h3>
+                <p>从内容组织到导航逻辑，都保持一致的浏览节奏。不堆砌，不浮夸。</p>
+            </div>
+            <div class="advantage-item">
+                <h3>🧭 信息可溯</h3>
+                <p>每部分内容都有明确的来源或说明，帮你在浏览时更快建立上下文。</p>
+            </div>
+            <div class="advantage-item">
+                <h3>📄 日常质感</h3>
+                <p>用接近文章排版的视觉语言，降低认知负担，让阅读更自然。</p>
+            </div>
+            <div class="advantage-item">
+                <h3>🔗 直接引用</h3>
+                <p>页面中所有对外链接均指向原始站点，不经过中间跳转，保持路径简洁。</p>
+            </div>
+        </div>
+
+        <!-- 说明区：站点介绍与可信说明 -->
+        <div class="explain-section">
+            <h2>关于这个站</h2>
+            <p>
+                如果你正在寻找一个与体育、娱乐或生活方式相关的内容站点，可能会遇到各种各样信息繁杂的页面。
+                <span class="highlight-label">定位</span>
+                <a href="https://officials-lejingsports.com">乐竞体育</a> 的定位更像一个信息聚合与展示窗口，它把分散的条目、更新和常见问题整理在同一个地方，减少你在多个页面之间反复切换的麻烦。
+            </p>
+            <p>
+                这里不制造焦虑，也不使用夸张的措辞。每一条内容都基于站点已有的公开信息进行转述或归纳。你可以把它看作一个“说明书式”的入口——能快速了解核心功能、内容分区以及常见操作指引，剩下的细节则留给具体页面去展示。
+            </p>
+            <div class="inset-box">
+                <p><strong>一点说明</strong> · 本介绍页仅作为信息参考，不构成任何形式的承诺或担保。所有操作与决策请以 <a href="https://officials-lejingsports.com">乐竞体育</a> 站点实际展示为准。</p>
+            </div>
+        </div>
+
+        <!-- 补充段落：可信角度 -->
+        <div class="explain-section" style="margin-top: 0.5rem;">
+            <h2>可信度从哪来</h2>
+            <p>
+                一个页面的可信度往往来自三个方面：<strong>内容是否一致</strong>、<strong>更新是否及时</strong>、<strong>引用是否明确</strong>。
+                在整理过程中，我们尽量让每一处描述都与原始站点保持对应，比如栏目名称、功能按钮、常见术语等，不擅自编造或过度解读。
+            </p>
+            <p>
+                同时，所有需要用户自行判断的部分（如个人偏好、使用习惯、风险认知）都做了明确的语气区分，不会把“建议”包装成“事实”。如果你发现任何描述与实际页面有出入，欢迎通过站点内置的反馈渠道指正。
+            </p>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-summary">
+            <h2>❓ 常见疑问摘要</h2>
+            <div class="faq-item">
+                <strong>这个页面是官方吗？</strong>
+                <p>本页属于第三方制作的介绍页，内容基于 <a href="https://officials-lejingsports.com">乐竞体育</a> 站点公开信息整理，并非官方声明。请以站点实际内容为准。</p>
+            </div>
+            <div class="faq-item">
+                <strong>为什么要有单独的介绍页？</strong>
+                <p>为了方便快速了解站点的定位、内容结构和常见功能，而不必在初次访问时四处翻找。适合第一次接触或想系统梳理的人。</p>
+            </div>
+            <div class="faq-item">
+                <strong>信息会定期更新吗？</strong>
+                <p>我们会根据站点实际变化进行不定期修订。但建议你在做任何决定前，直接访问原始站点确认最新信息。</p>
+            </div>
+            <div class="faq-more">
+                —— 更多内容请直接访问 <a href="https://officials-lejingsports.com">乐竞体育</a>
+            </div>
+        </div>
+
+        <!-- 底部链接 -->
+        <div class="footer-links">
+            <p>
+                <a href="https://officials-lejingsports.com">乐竞体育</a> 
+                · 本介绍页仅作为信息参考
+            </p>
+            <p>
+                <span style="color:#9b8977;">内容整理 · 2025</span>
+                <a href="#" class="btn-soft" style="margin-left:1rem;">浏览站点</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
